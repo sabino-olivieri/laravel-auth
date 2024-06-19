@@ -66,6 +66,12 @@
                   <i class="fa-solid fa-table-list"></i> Lista Progetti
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-white rounded-2 {{ Request::route()->getName() == 'admin.project.create' ? 'bg-primary' : ''}}"
+                  href="{{ route('admin.project.create') }}">
+                  <i class="fa-solid fa-square-plus"></i> Aggiungi Progetto
+                </a>
+              </li>
             </ul>
 
 

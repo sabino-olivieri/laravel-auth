@@ -1,0 +1,28 @@
+.form-floating > .form-control {
+    background-color: transparent;
+    color: white;
+
+    &:focus ~ label {
+        color: white;
+        font-style: italic;
+    }
+}
+
+.form-floating > .form-control:focus ~ label::after {
+    background-color: transparent;
+}
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+    background-color: transparent;
+    color: white;
+}
+
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: white;
+    font-style: italic;
+}
+
+.form-floating {
+    #floatingTextarea {
+        height: 100px;
+    }
+}

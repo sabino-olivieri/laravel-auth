@@ -22,7 +22,7 @@ class ProjectsTableSeeder extends Seeder
             $newProject->title = $faker->sentence();
             $newProject->description = $faker->text();
             $newProject->image_url = $faker->imageUrl();
-            $newProject->url_site = $faker->url();
+            $newProject->site_url = $faker->url();
             $newProject->start_date = $faker->dateTimeBetween('-2 week', '-1 week');
             $newProject->finish_date = $faker->dateTimeBetween('-1 week', 'now');
             $newProject->slug = Str::slug($newProject->title);

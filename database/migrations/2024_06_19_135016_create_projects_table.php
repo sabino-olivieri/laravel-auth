@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->text('description')->nullable();
             $table->string('image_url');
-            $table->string('url_site')->nullable();
+            $table->string('site_url')->nullable();
             $table->date('start_date')->nullable();
             $table->date('finish_date')->nullable();
             $table->string('slug')->unique();
