@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('url_site')->nullable();
             $table->date('start_date')->nullable();
             $table->date('finish_date')->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
