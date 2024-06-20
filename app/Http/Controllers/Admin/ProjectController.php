@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use DateTime;
 use Illuminate\Http\Request;
@@ -51,7 +52,7 @@ class ProjectController extends Controller
         $newProject->fill($request->all());
         $newProject->slug = Str::slug($newProject->title);
         $newProject->save();
-        return redirect()->route('admin.project.index');
+        return redirect()->route('admin.project.show', ['project' => $newProject->slug]);
     }
 
     /**
@@ -74,17 +75,21 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $newProject = new Project();
+        $newProject->fill($request->all());
+        $newProject->slug = Str::slug($newProject->title);
+        $newProject->save();
+        return redirect()->route('admin.project.show', ['project' => $newProject->slug]);
     }
 
     /**
