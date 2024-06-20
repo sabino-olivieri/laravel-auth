@@ -52,7 +52,7 @@ class ProjectController extends Controller
         $newProject->fill($request->all());
         $newProject->slug = Str::slug($newProject->title);
         $newProject->save();
-        return redirect()->route('admin.project.show', ['project' => $newProject->slug]);
+        return redirect()->route('admin.project.show', ['project' => $newProject->slug])->with('message', 'Progetto '.$newProject->title.' salvato corrattamente');
     }
 
     /**
@@ -85,11 +85,11 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $newProject = new Project();
-        $newProject->fill($request->all());
-        $newProject->slug = Str::slug($newProject->title);
-        $newProject->save();
-        return redirect()->route('admin.project.show', ['project' => $newProject->slug]);
+
+        $project->fill($request->all());
+        $project->slug = Str::slug($project->title);
+        $project->save();
+        return redirect()->route('admin.project.show', ['project' => $project->slug])->with('message', 'Progetto '.$project->title.' modificato corrattamente');
     }
 
     /**
