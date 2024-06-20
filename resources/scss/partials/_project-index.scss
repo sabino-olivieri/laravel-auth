@@ -1,27 +1,37 @@
 .container {
-    .table {
+    .table>:not(caption)>*>* {
         img {
             max-width: 100px;
             border-radius: 5px;
         }
 
-        .site {
-            max-width: 150px;
-            overflow: hidden;
-            a {
-                color: white;
-            }
-        }
 
-        --bs-table-bg: transparent;
-        --bs-table-color: white;
-        // border: 1px solid white;
-        // border-radius: 20px;
+        background-color: transparent;
+        color: white;
+
 
     }
 
     .container-table {
-                border: 1px solid white;
+        border: 1px solid white;
         border-radius: 10px;
+
+        .table {
+            .site {
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                a {
+                    color: white;
+                }
+            }
+
+
+            tr:last-child td {
+                border: 0;
+            }
+        }
     }
 }
