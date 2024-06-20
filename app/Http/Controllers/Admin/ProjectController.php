@@ -15,12 +15,21 @@ class ProjectController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $projectList = Project::orderBy('finish_date','desc')->get();
+    {
+        $projectList = Project::orderBy('finish_date', 'desc')->get();
 
         foreach ($projectList as $project) {
-            $project['start_date'] = date_format(new DateTime($project['start_date']), 'd/m/y');
-            $project['finish_date'] = date_format(new DateTime($project['finish_date']), 'd/m/y');
+            if(!is_null($project->start_date)) {
+                $project->start_date = date_format(new DateTime($project->start_date), 'd/m/y');
+            } else {
+                $project->start_date = 'N/D';
+            }
+
+            if(!is_null($project->finish_date)) {
+                $project->finish_date = date_format(new DateTime($project->finish_date), 'd/m/y');
+            } else {
+                $project->finish_date = 'N/D';
+            }
         }
         return view('admin.projects.index', compact('projectList'));
     }
@@ -48,9 +57,18 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(Project $project)
+    {   
+        
+        if(!is_null($project->start_date)) {
+            $project->start_date = date_format(new DateTime($project->start_date), 'd/m/y');
+            $project->finish_date = date_format(new DateTime($project->finish_date), 'd/m/y');
+        } else {
+            $project->start_date = 'N/D';
+            $project->finish_date = 'N/D';
+        }
+
+        return view('admin.projects.show', compact('project'));
     }
 
     /**

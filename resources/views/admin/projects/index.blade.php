@@ -25,7 +25,11 @@
                         <td class="site align-middle""><a href="{{$project->site_url}}" target="blank">{{$project->site_url}}</a></td>
                         <td class="align-middle">{{$project->start_date}}</td> 
                         <td class="align-middle">{{$project->finish_date}}</td>
-                        <td class="align-middle"><button>Prova</button></td>
+                        <td class="align-middle">
+                            <a class="btn btn-info" href="{{route('admin.project.show', ['project' => $project->slug])}}"><i class="fa-solid fa-info"></i></a>
+                            <a class="btn btn-success" href="{{route('admin.project.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        </td>
                     </tr>
                         
                     @endforeach

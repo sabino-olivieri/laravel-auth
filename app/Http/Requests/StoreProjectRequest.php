@@ -26,7 +26,7 @@ class StoreProjectRequest extends FormRequest
             'description' => 'nullable|min:10',
             'image_url' => 'required|active_url',
             'site_url' => 'nullable|active_url',
-            'start_date' => 'nullable|date|before_or_equal:today',
+            'start_date' => 'nullable|date|before_or_equal:today|required_with:finish_date',
             'finish_date' => 'nullable|date|after_or_equal:start_date',
         
         ];
@@ -43,6 +43,7 @@ class StoreProjectRequest extends FormRequest
             'site_url.active_url' => 'Il link del sito non è valido',
             'start_date.date' => 'Inserisci una data corretta',
             'start_date.before_or_equal' => 'Inserisci una data uguale o precedente a oggi',
+            'start_date.required_with' => 'Inserisci una data corretta',
             'finish_date.after_or_equal' => 'Inserisci una data uguale o successiva a oggi',
             'finish.date' => 'Inserisci una data corretta',          
 
