@@ -5,7 +5,14 @@
         <div class="row">
             <div class="col-12 my-3 d-flex justify-content-between">
                 <h2 class="m-0">{{ $project->title }}</h2> 
-                <a class="btn btn-success" href="{{route('admin.project.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <div>
+                    <a class="btn btn-success" href="{{route('admin.project.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form action="{{route('admin.project.destroy', ['project' => $project->slug])}}" method="post" class="d-inline-block ">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </div>
 
             </div>
             <div class="col-12 col-md-6">
@@ -36,10 +43,6 @@
             {{ session('message') }} <i class="fa-regular fa-circle-check"></i>
             <div class="ms_line ms_hidden" > </div>
         </div>
-        
-
-        <script>
-
-        </script>
     @endsession
+
 @endsection

@@ -90,7 +90,10 @@ class ProjectController extends Controller
     {
         $request->validate(['title' => Rule::unique('projects')->ignore($project->id)],
                             ['title.unique' => 'Esiste già un progetto con lo stesso titolo',]);
-                            
+        if($request->image){
+            Storage::delete($project->image);
+        }
+
         $project->fill($request->all());
         $project->slug = Str::slug($project->title);
         $project->image = Storage::put('img', $request->image);
@@ -101,8 +104,12 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        if($project->image){
+            Storage::delete($project->image);
+        }
+        $project->delete();
+        return redirect()->route('admin.project.index')->with('message', 'Progetto '.$project->title.' eliminato corrattamente');
     }
 }

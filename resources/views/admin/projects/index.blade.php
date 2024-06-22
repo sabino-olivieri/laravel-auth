@@ -20,7 +20,7 @@
                 <tbody>
                     @foreach ($projectList as $project)
                     <tr>
-                        <td><img src="{{asset('storage/'.$project->image)}}" alt=""></td>
+                        <td class="align-middle"><img src="{{asset('storage/'.$project->image)}}" alt=""></td>
                         <td class="align-middle fw-bolder">{{$project->title}}</th>
                         <td class="site align-middle""><a href="{{$project->site_url}}" target="blank">{{$project->site_url}}</a></td>
                         <td class="align-middle">{{$project->start_date}}</td> 
@@ -29,6 +29,11 @@
                             <a class="btn btn-info" href="{{route('admin.project.show', ['project' => $project->slug])}}"><i class="fa-solid fa-info"></i></a>
                             <a class="btn btn-success" href="{{route('admin.project.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square"></i></a>
 
+                            <form action="{{route('admin.project.destroy', ['project' => $project->slug])}}" method="post" class="d-inline-block ">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                         
@@ -38,4 +43,5 @@
             </table>
         </div>
     </div>
+    @include('admin.projects.partials.toast')
 @endsection
