@@ -13,6 +13,16 @@
     transition: all 0.5s;
 }
 
+.ms_line {
+
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+    width: 0px;
+    transition: width 4.7s linear;
+    margin-top: 5px;
+} 
+
 .ms_hidden {
     padding: 0;
     overflow: hidden;

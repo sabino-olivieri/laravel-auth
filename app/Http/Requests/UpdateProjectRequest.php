@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProjectRequest extends FormRequest
 {
@@ -22,9 +23,10 @@ class UpdateProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // Rule::unique('projects')->ignore($this->id)
             'title' => 'required|min:5|unique:projects,title',
             'description' => 'nullable|min:10',
-            'image_url' => 'required|active_url',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'site_url' => 'nullable|active_url',
             'start_date' => 'nullable|date|before_or_equal:today|required_with:finish_date',
             'finish_date' => 'nullable|date|after_or_equal:start_date',
@@ -38,8 +40,9 @@ class UpdateProjectRequest extends FormRequest
             'title.min' => 'Il titolo deve contenere almeno 5 caratteri',
             'title.unique' => 'Esiste già un progetto con lo stesso titolo',
             'description.min' => 'La descrizione deve contenere almeno 10 caratteri',
-            'image_url.required' => "Il link dell'immmagine è obbligatorio",
-            'image_url.active_url' => "Il link dell'immmagine non è valido",
+            'image.required' => "I'immagine è obbligatoria",
+            'image.image' => "Inserire un immagine valida",
+            'image.mimes' => "Formati supportati: jpg-jpeg-png",
             'site_url.active_url' => 'Il link del sito non è valido',
             'start_date.date' => 'Inserisci una data corretta',
             'start_date.before_or_equal' => 'Inserisci una data uguale o precedente a oggi',

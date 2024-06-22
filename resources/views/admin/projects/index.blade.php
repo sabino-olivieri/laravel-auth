@@ -20,7 +20,7 @@
                 <tbody>
                     @foreach ($projectList as $project)
                     <tr>
-                        <td><img src="{{$project->image_url}}" alt=""></td>
+                        <td><img src="{{asset('storage/'.$project->image)}}" alt=""></td>
                         <td class="align-middle fw-bolder">{{$project->title}}</th>
                         <td class="site align-middle""><a href="{{$project->site_url}}" target="blank">{{$project->site_url}}</a></td>
                         <td class="align-middle">{{$project->start_date}}</td> 

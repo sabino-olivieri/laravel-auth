@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row">
         <h2 class="my-3">Aggiungi nuovo progetto</h2>
-        <form action="{{route('admin.project.store')}}" method="post" class="text-center">
+        <form action="{{route('admin.project.store')}}" method="post" class="text-center" enctype="multipart/form-data">
             @csrf
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="title" placeholder="title" name="title"  value="{{old('title')}}"  required>
+                <input type="text" class="form-control ms_form-control" id="title" placeholder="title" name="title"  value="{{old('title')}}"  required>
                 <label for="title">Title</label>
             </div>
             @error('title')
@@ -17,17 +17,7 @@
             @enderror
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="image_url" placeholder="image_url" name="image_url" value="{{old('image_url')}}" required>
-                <label for="image_url">Link immagine</label>
-            </div>
-            @error('image_url')
-            <div class="alert alert-danger">
-                {{ $errors->get('image_url')[0] }}
-            </div>
-            @enderror
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="site_url" placeholder="site_url" name="site_url" value="{{old('site_url')}}">
+                <input type="text" class="form-control ms_form-control" id="site_url" placeholder="site_url" name="site_url" value="{{old('site_url')}}">
                 <label for="site_url">Link sito</label>
             </div>
             @error('site_url')
@@ -37,7 +27,7 @@
             @enderror
 
             <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="start_date" placeholder="start_date" name="start_date" value="{{old('start_date')}}">
+                <input type="date" class="form-control ms_form-control" id="start_date" placeholder="start_date" name="start_date" value="{{old('start_date')}}">
                 <label for="start_date">Data inizio progetto</label>
             </div>
             @error('start_date')
@@ -47,7 +37,7 @@
             @enderror
 
             <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="finish_date" placeholder="finish_date" name="finish_date" value="{{old('finish_date')}}">
+                <input type="date" class="form-control ms_form-control" id="finish_date" placeholder="finish_date" name="finish_date" value="{{old('finish_date')}}">
                 <label for="finish_date">Data fine progetto</label>
             </div>
             @error('finish_date')
@@ -57,7 +47,7 @@
             @enderror
 
             <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="description" id="floatingTextarea" name="description">{{old('description')}}</textarea>
+                <textarea class="form-control ms_form-control" placeholder="description" id="floatingTextarea" name="description">{{old('description')}}</textarea>
                 <label for="floatingTextarea">Descrizione</label>
             </div>
             @error('description')
@@ -65,7 +55,16 @@
                 {{ $errors->get('description')[0] }}
             </div>
             @enderror
+            
+            <input type="file" class="form-control ms_form-control mb-3 ms_file" id="image" placeholder="image" name="image" value="{{old('image')}}" id="ms_file" required>
+                    
+            @error('image')
+            <div class="alert alert-danger">
+                {{ $errors->get('image')[0] }}
+            </div>
+            @enderror
 
+            <img id="anteprimaImmagine" class="img-fluid d-block w-25 m-auto">
 
             <button type="reset" class="btn btn-outline-danger">Cancella</button>
             <button type="submit" class="btn btn-outline-success">Aggiungi</button>
@@ -73,4 +72,7 @@
         </form>
     </div>
 </div>
+
+
+
 @endsection

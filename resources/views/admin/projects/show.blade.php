@@ -3,11 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12 my-3">
-                <h2>{{ $project->title }}</h2>
+            <div class="col-12 my-3 d-flex justify-content-between">
+                <h2 class="m-0">{{ $project->title }}</h2> 
+                <a class="btn btn-success" href="{{route('admin.project.edit', ['project' => $project->slug])}}"><i class="fa-solid fa-pen-to-square"></i></a>
+
             </div>
             <div class="col-12 col-md-6">
-                <img class="img-fluid" src="{{ $project->image_url }}" alt="">
+                <img class="img-fluid" src="{{ asset('storage/'.$project->image) }}" alt="">
             </div>
 
             <div class="col-12 col-md-6">
@@ -19,7 +21,7 @@
                         <strong>Data fine progetto:</strong> {{ $project->finish_date }}
                     </li>
                     <li class="text-truncate mb-3">
-                        <strong>Link progetto:</strong> <a href="{{ $project->site_url }}">{{ $project->site_url }}</a>
+                        <strong>Link progetto:</strong> <a href="{{ $project->site_url }}" target="blank" class="text-white">{{ $project->site_url }}</a>
                     </li>
                     <li class="mb-3">
                         <strong>Descrizione: </strong> {{ $project->description }}
@@ -32,15 +34,12 @@
     @session('message')
         <div class="ms_toast ms_hidden bg-success rounded-2 shadow">
             {{ session('message') }} <i class="fa-regular fa-circle-check"></i>
+            <div class="ms_line ms_hidden" > </div>
         </div>
+        
 
         <script>
-            const toastElem = document.querySelector('.ms_toast');
-            toastElem.classList.toggle('ms_hidden');
 
-            const time = setTimeout(() => {
-                toastElem.classList.toggle('ms_hidden');
-            }, 5000);
         </script>
     @endsession
 @endsection
