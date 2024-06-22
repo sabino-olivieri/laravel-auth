@@ -24,7 +24,7 @@ class UpdateProjectRequest extends FormRequest
     {
         return [
             // Rule::unique('projects')->ignore($this->id)
-            'title' => 'required|min:5|unique:projects,title',
+            'title' => 'required|min:5',
             'description' => 'nullable|min:10',
             'image' => 'required|image|mimes:png,jpg,jpeg',
             'site_url' => 'nullable|active_url',
@@ -38,7 +38,6 @@ class UpdateProjectRequest extends FormRequest
         return	[ 
             'title.required' => 'Il titolo è obbligatorio',
             'title.min' => 'Il titolo deve contenere almeno 5 caratteri',
-            'title.unique' => 'Esiste già un progetto con lo stesso titolo',
             'description.min' => 'La descrizione deve contenere almeno 10 caratteri',
             'image.required' => "I'immagine è obbligatoria",
             'image.image' => "Inserire un immagine valida",

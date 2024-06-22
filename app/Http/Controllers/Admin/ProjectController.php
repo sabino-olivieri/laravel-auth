@@ -10,6 +10,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\support\Str;
+use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
 {
@@ -87,6 +88,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+        $request->validate(['title' => Rule::unique('projects')->ignore($project->id)],
+                            ['title.unique' => 'Esiste già un progetto con lo stesso titolo',]);
+                            
         $project->fill($request->all());
         $project->slug = Str::slug($project->title);
         $project->image = Storage::put('img', $request->image);

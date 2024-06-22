@@ -57,7 +57,7 @@
             </div>
             @enderror
 
-            <input type="file" class="form-control ms_form-control mb-3 ms_file" id="image" placeholder="image" name="image" value="{{old('image', asset('storage/'.$project->image))}}" id="ms_file" required>
+            <input type="file" class="form-control ms_form-control mb-3 ms_file" id="image" placeholder="image" name="image" id="ms_file" required>
                     
             @error('image')
             <div class="alert alert-danger">
